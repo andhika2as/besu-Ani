@@ -13,14 +13,14 @@ services:
       - POSTGRES_USER=postgres
     # - NETWORK=quickstart
       - NETWORK=dev
-      - SUBNETWORK=infra-telkom
+      - SUBNETWORK=aws-Ani
       - CHAIN_ID=1337
       - COIN=ETH
       - ETHEREUM_JSONRPC_VARIANT=besu
       - ETHEREUM_JSONRPC_TRANSPORT=http
-      - ETHEREUM_JSONRPC_HTTP_URL=http://10.12.8.154:8545
-      - ETHEREUM_JSONRPC_TRACE_URL=http://10.12.8.154:8545
-      - ETHEREUM_JSONRPC_WS_URL=ws://10.12.8.154:8546
+      - ETHEREUM_JSONRPC_HTTP_URL=http://20.121.221.56:8545
+      - ETHEREUM_JSONRPC_TRACE_URL=http://20.121.221.56:8545
+      - ETHEREUM_JSONRPC_WS_URL=ws://20.121.221.56:8546
     entrypoint:
       - /bin/sh
       - -c
@@ -35,7 +35,7 @@ services:
       - 26000:4000
 
   blockscoutpostgres:
-    image: postgres:13-alpine
+    image: postgres:14-alpine
     restart: "always"
 #    container_name: blockscoutpostgres
     environment:
