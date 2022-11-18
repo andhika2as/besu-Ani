@@ -1,0 +1,19 @@
+version: '3'
+services:
+  prometheus:
+    image: "prom/prometheus"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+
+  grafana:
+    image: "grafana/grazzfana"
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+    volumes:
+      - ./monitoring/grafana/provisioning/:/etc/grafana/provisioning/
+    ports:
+      - 80:3000

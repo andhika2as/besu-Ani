@@ -1,0 +1,25 @@
+
+logging="INFO"
+data-path="/opt/besu/data"
+host-whitelist=["*"]
+revert-reason-enabled=true
+
+
+# rpc
+rpc-http-enabled=true
+rpc-http-host="0.0.0.0"
+rpc-http-port=8545
+rpc-http-cors-origins=["*"]
+
+# ws
+rpc-ws-enabled=true
+rpc-ws-host="0.0.0.0"
+rpc-ws-port=8546
+
+# metrics
+metrics-enabled=true
+metrics-host="0.0.0.0"
+metrics-port=9545
+
+# rpc
+rpc-http-api=["ETH","NET","WEB3","ADMIN","TXPOOL","TRACE"]

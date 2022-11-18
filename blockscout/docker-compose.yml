@@ -1,0 +1,56 @@
+version: '3.6'
+
+services:
+  blockscout:
+    image: consensys/blockscout:v4.1.5-beta
+#    container_name: blockscout
+    restart: "always"
+    environment:
+      - PORT=4000
+      - ECTO_USE_SSL=false
+      - DATABASE_URL=postgresql://postgres:postgres@blockscoutpostgres:5432/postgres?ssl=false
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    # - NETWORK=quickstart
+      - NETWORK=dev
+      - SUBNETWORK=infra-telkom
+      - CHAIN_ID=1337
+      - COIN=ETH
+      - ETHEREUM_JSONRPC_VARIANT=besu
+      - ETHEREUM_JSONRPC_TRANSPORT=http
+      - ETHEREUM_JSONRPC_HTTP_URL=http://10.12.8.154:8545
+      - ETHEREUM_JSONRPC_TRACE_URL=http://10.12.8.154:8545
+      - ETHEREUM_JSONRPC_WS_URL=ws://10.12.8.154:8546
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        cd /opt/app/;
+        echo $$MIX_ENV && mix do ecto.create, ecto.migrate; mix phx.server;
+    depends_on:
+      - blockscoutpostgres
+    links:
+      - blockscoutpostgres
+    ports:
+      - 26000:4000
+
+  blockscoutpostgres:
+    image: postgres:13-alpine
+    restart: "always"
+#    container_name: blockscoutpostgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - volPostgres:/var/lib/postgresql/data
+    ports:
+      - 5432
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  volPostgres:
