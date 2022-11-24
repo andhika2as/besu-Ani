@@ -5,3 +5,6 @@ Blockscout Quick deployment
 
 # redeploy : for reindex / new chain
 Run # docker-compose down -v
+
+# Adding nginx params
+port 443 for accessing https enabled.
