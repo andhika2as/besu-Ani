@@ -64,5 +64,10 @@ services:
         - ./nginx/certs:/etc/nginx/certs
         - ./nginx/log:/var/log/nginx
 
+networks:
+  default:
+    name: blockscout-net
+    external: true
+
 volumes:
   volPostgres:
