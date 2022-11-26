@@ -13,7 +13,7 @@ services:
       - POSTGRES_USER=postgres
     # - NETWORK=quickstart
       - NETWORK=dev
-      - SUBNETWORK=aws-Ani
+      - SUBNETWORK="Ani Chain"
       - CHAIN_ID=1337
       - COIN=ETH
       - ETHEREUM_JSONRPC_VARIANT=besu
