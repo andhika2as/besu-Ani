@@ -23,6 +23,6 @@ services:
 networks:
   default:
     name: blockscout-net
-#    external: true
+    external: true
 
 
