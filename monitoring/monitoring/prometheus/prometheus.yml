@@ -50,3 +50,11 @@ scrape_configs:
       scheme: http
       static_configs:
         - targets: [ 20.172.183.232:9545 ]
+
+    - job_name: validator5
+      scrape_interval: 15s
+      scrape_timeout: 10s
+      metrics_path: /metrics
+      scheme: http
+      static_configs:
+        - targets: [ 20.121.217.29:9545 ]
