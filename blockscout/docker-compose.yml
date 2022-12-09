@@ -13,7 +13,7 @@ services:
       - POSTGRES_USER=postgres
     # - NETWORK=quickstart
       - NETWORK=dev
-      - SUBNETWORK="Ani Chain"
+      - SUBNETWORK=Ani_Chain
       - CHAIN_ID=1337
       - COIN=ETH
       - ETHEREUM_JSONRPC_VARIANT=besu
@@ -21,12 +21,15 @@ services:
       - ETHEREUM_JSONRPC_HTTP_URL=http://20.121.221.56:8545
       - ETHEREUM_JSONRPC_TRACE_URL=http://20.121.221.56:8545
       - ETHEREUM_JSONRPC_WS_URL=ws://20.121.221.56:8546
+      - LOGO=img/ani-logo.jpg
     entrypoint:
       - /bin/sh
       - -c
       - |
         cd /opt/app/;
         echo $$MIX_ENV && mix do ecto.create, ecto.migrate; mix phx.server;
+    volumes:
+      - ./img:/opt/app/img
     depends_on:
       - blockscoutpostgres
     links:
